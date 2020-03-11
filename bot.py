@@ -1,13 +1,27 @@
+import os
+from dotenv import load_dotenv
+
 import discord
 from discord.ext import commands
 
 import random
+
+load_dotenv()
+API_KEY = os.getenv('DISCORD_TOKEN')
+SERVER_NAME = os.getenv('DISCORD_GUILD')
+
 
 client = commands.Bot(command_prefix = '.')
 
 @client.event
 async def on_ready():
     print('Bot is ready.')
+
+
+
+@client.command()
+async def clear(ctx, amount=5):
+    await ctx.channel.purge(limit=amount)
 
 
 @client.command(aliases=['Ping'])
@@ -49,4 +63,4 @@ async def _8ball(ctx, *, question):
 
 
 
-client.run('Njg3MDk1Nzc4OTA0Mzc1MzA5.Xmg80Q.slrKk5sIGtkkAld_tqkFWAMhd6s')
+client.run(API_KEY)
