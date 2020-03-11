@@ -15,15 +15,15 @@ client = commands.Bot(command_prefix = '.')
 
 @client.command()
 async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
+    client.load_extension(f'source_files.{extension}')
 
 @client.command()
 async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
+    client.unload_extension(f'source_files.{extension}')
 
-for filename in os.listdir('./cogs'):
+for filename in os.listdir('./source_files'):
     if filename.endswith('.py'):
-        client.load_extension(f'cogs.{filename[:-3]}')
+        client.load_extension(f'source_files.{filename[:-3]}')
 
 status = cycle(['Status 1', 'Status 2'])
 
@@ -32,9 +32,9 @@ status = cycle(['Status 1', 'Status 2'])
 #    await client.change_presence(activity=discord.Game(next(status)))
 
 
-#@client.event
-#async def on_ready():
-#    print('Bot is ready.')
+@client.event
+async def on_ready():
+    print('Bot is ready.')
 
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
@@ -81,9 +81,8 @@ def is_it_me(ctx):
 
 
 @client.command()
-@commands.check()
 async def example(ctx):
-    await ctx.send(f'Hi i'm {ctx.author}')
+    await ctx.send(f"Hi i'm {ctx.author}")
 
 
 #@client.command(aliases=['Ping'])

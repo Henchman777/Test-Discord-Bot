@@ -8,14 +8,15 @@ class Example(commands.Cog):
         self.client = client
 
     # Events
-    @commands.Cog.listener()
-    async def on_ready(self):
+    #@commands.Cog.listener()
+    #async def on_ready(self):
         #change_status.start()
         #await self.client.change_presence(status=discord.Status.idle, activity=discord.Game('Eating Lunch'))
-        print('Bot is ready.')
+        #print('Bot is ready.')
 
     # Commands
     @commands.command()
+    @commands.has_permissions(kick_members=True)
     async def ping(self, ctx):
         await ctx.send('Pong!')
 
